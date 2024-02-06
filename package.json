@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "dev": "npx tailwindcss -i style.css -o style.out.css --watch",
+    "build": "npx tailwindcss -i style.css -o style.out.css && mkdir -v public/ && cp -rv lib favicon.svg index.html style.out.css public/",
+    "clean": "rm -rf -- public/"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

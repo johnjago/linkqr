@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>LinkQR: Generate a QR code for a link</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta name="description" content="Create a QR code from a URL using LinkQR. Share a link through QR code. Open a website from your computer on your phone with your camera." />
+	<meta property="og:title" content="LinkQR: Generate a QR code for a link" />
+	<meta property="og:description" content="Create a QR code from a URL using LinkQR. Share a link through QR code. Open a website from your computer on your phone with your camera." />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:creator" content="@johncjago" />
+	<meta name="twitter:title" content="LinkQR: Generate a QR code for a link" />
+	<meta name="twitter:description" content="Create a QR code from a URL using LinkQR. Share a link through QR code. Open a website from your computer on your phone with your camera." />
+	<link rel="stylesheet" type="text/css" href="style.out.css" />
+	<link rel="icon" href="favicon.svg">
+</head>
+<body class="text-xl text-zinc-600 flex flex-col items-center h-screen mx-5 py-10 bg-gradient-to-r from-purple-100 to-blue-100">
+	<div class="flex flex-col justify-center items-center h-full">
+		<header class="mb-8">
+			<h1 class="text-4xl font-extrabold">
+				Link<span class="text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600">QR</span>
+			</h1>
+		</header>
+		<main class="flex flex-col max-w-96">
+			<input
+				id="url"
+				type="text"
+				placeholder="https://example.org"
+				class="w-80 sm:w-96 rounded-lg border-0 p-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
+			/>
+			<canvas id="canvas" class="transition-all bg-white rounded-lg mt-4 mx-auto"></canvas>
+		</main>
+	</div>
+	<footer class="pt-20">
+		<small>
+			a project by <a href="https://johnjago.com" class="underline text-red-600">JC</a> • <a href="https://forms.gle/QGcNppg73sYTMWhS9" class="underline text-red-600">send&nbsp;me&nbsp;feedback</a> • have a great <span id="day"></span>!
+		</small>
+	</footer>
+	<script src="lib/qrcode.js"></script>
+	<script>
+		document.querySelector('#url').addEventListener(
+			'input',
+			event => generateQR(event.target.value)
+		);
+
+		function generateQR(URL) {
+			if (URL === '') {
+				URL = document.querySelector('#url').placeholder;
+			}
+
+			QRCode.toCanvas(
+				document.querySelector('#canvas'),
+				URL,
+				function (error) {
+					if (error) {
+						console.error(error);
+					} else {
+						console.log('success!');
+					}
+				}
+			);
+		}
+
+		generateQR(document.querySelector('#url').placeholder);
+
+		const userLanguage = navigator.language || navigator.userLanguage;
+		const currentDate = new Date();
+		const dayOfWeekName = currentDate.toLocaleDateString(userLanguage, { weekday: 'long' });
+		document.querySelector('#day').textContent = dayOfWeekName;
+	</script>
+</body>
+</html>
