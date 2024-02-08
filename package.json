@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "npx tailwindcss -i style.css -o style.out.css --watch",
-    "build": "npx tailwindcss -i style.css -o style.out.css && mkdir -v public/ && cp -rv lib favicon.svg index.html style.out.css public/",
+    "build": "npx tailwindcss -i style.css -o style.out.css && mkdir -v public/ && cp -rv lib favicon.svg index.html style.out.css main.js public/",
     "clean": "rm -rf -- public/"
   },
   "dependencies": {
