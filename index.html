@@ -22,13 +22,16 @@
 				Link<span class="text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600">QR</span>
 			</h1>
 		</header>
-		<main class="flex flex-col max-w-96">
-			<input
-				id="url"
-				type="text"
-				placeholder="https://example.org"
-				class="w-80 sm:w-96 rounded-lg border-0 p-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
-			/>
+		<main class="flex flex-col">
+			<div>
+				<div
+					id="url"
+					role="textbox"
+					aria-label="Enter URL to make a QR code for"
+					contenteditable="true"
+					class="max-w-[95vw] break-words empty:before:content-['https://example.org'] empty:before:text-gray-400 min-w-80 bg-white rounded-lg border-0 p-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
+				></div>
+			</div>
 			<canvas id="canvas" class="transition-all bg-white rounded-lg mt-4 mx-auto"></canvas>
 		</main>
 	</div>

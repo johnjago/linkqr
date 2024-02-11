@@ -1,22 +1,24 @@
+const PLACEHOLDER = 'https://example.org'
+
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
 	loadURL();
 
 	const input = document.querySelector('#url');
-	generateQR(input.value ?? input.placeholder);
+	generateQR(input.textContent ?? PLACEHOLDER);
 
 	showFooterGreeting();
 }
 
 document.querySelector('#url').addEventListener(
 	'input',
-	event => generateQR(event.target.value)
+	event => generateQR(event.target.textContent)
 );
 
 function generateQR(URL) {
-	if (URL === '') {
-		URL = document.querySelector('#url').placeholder;
+	if (!URL) {
+		URL = PLACEHOLDER;
 	}
 
 	QRCode.toCanvas(
