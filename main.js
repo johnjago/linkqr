@@ -45,11 +45,11 @@ function loadURL() {
 	if (!url) {
 		return;
 	}
-	document.querySelector('#url').value = params.get('url');
+	document.querySelector('#url').textContent = params.get('url');
 }
 
 function updateURL(input) {
-	const encodedURI = encodeURIComponent(input.value);
+	const encodedURI = encodeURIComponent(input.textContent);
 	let currentURL = window.location.href;
 
 	if (currentURL.includes('?')) {
